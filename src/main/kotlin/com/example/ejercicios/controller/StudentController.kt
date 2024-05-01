@@ -29,5 +29,10 @@ fun list():List<Student>{
     fun updateName(@RequestBody student: Student):ResponseEntity< Student>{
         return ResponseEntity( studentService.updateName(student), HttpStatus.OK)
     }
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id:Long):ResponseEntity< String>{
+        studentService.delete(id)
+        return ResponseEntity("Estudiante Eliminado", HttpStatus.OK)
+    }
 
 }

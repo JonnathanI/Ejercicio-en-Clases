@@ -47,6 +47,17 @@ class StudentService {
         }
     }
 
+    fun delete(id: Long){
+        try {
+
+            var response = studentRespository.findById(id).orElseThrow{throw ResponseStatusException(HttpStatus.NOT_FOUND, "Estudiante no Existe con el Id:  $id")}
+                 studentRespository.delete(response)
+        }
+        catch(ex:Exception){
+            throw ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al eliminar el estudiante", ex)
+        }
+    }
+
 
 
 
